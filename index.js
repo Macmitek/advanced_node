@@ -1,10 +1,15 @@
-function hideString(str, done) {
-  process.nextTick(() => {
-    done(str.replace(/[a-zA-Z]/g, 'X'));
-  });
+function delay(seconds, callback) {
+  setTimeout(callback, seconds * 1000);
 }
-hideString('Hello World', (hidden) => {
-  console.log(hidden);
-});
 
-console.log('End');
+console.log('Starting delays');
+
+delay(2, () => {
+  console.log('two seconds');
+  delay(1, () => {
+    console.log('Three seconds');
+    delay(1, () => {
+      console.log('four seconds');
+    });
+  });
+});
